@@ -92,8 +92,31 @@ In this exercise you will:
 
 #### Reflection Questions
 
-1. **What steps are required to open an X11 window and receive events?**
+1. **What steps are required to open an X11 window and receive events?**#
+Verbindung zum X-Server herstellen
+Mit XOpenDisplay(NULL) verbindet sich dein Programm mit dem X-Server, der unter Ubuntu den Bildschirm verwaltet.
+
+ Ein Fenster erstellen
+Mit XCreateSimpleWindow(...) fordert dein Programm den X-Server auf, ein Fenster mit bestimmten Eigenschaften 
+(Position, Größe, Farben) zu erstellen.
+
+ Ereignisse auswählen
+Mit XSelectInput teilst du dem X-Server mit, welche Ereignisse dein Programm empfangen soll, z.B. ExposureMask
+(wenn das Fenster neu gezeichnet werden soll) und KeyPressMask (wenn eine Taste gedrückt wird).
+
+Fenster sichtbar machen (Mapping)
+Mit XMapWindow(...) wird das Fenster auf dem Bildschirm sichtbar gemacht.
+
+In die Ereignisschleife eintreten
+Mit einer Schleife (for (;;) { XNextEvent(...) }) wartet dein Programm auf Ereignisse vom X-Server, um diese zu behandeln.
 2. **How does the `Expose` event trigger your drawing code?**
+Wenn das Fenster neu gezeichnet werden muss (z.B. nach dem Öffnen, Verkleinern oder Vergrößern),
+sendet der X-Server ein Expose-Ereignis an dein Programm.
+Dein Programm überprüft:
+
+if (e.type == Expose) { ... }
+und führt dann den Zeichencode (XDrawRectangle(...)) aus, um z.B. ein Rechteck im Fenster zu zeichnen.
+
 
 ---
 
