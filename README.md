@@ -176,8 +176,16 @@ und führt dann den Zeichencode (XDrawRectangle(...)) aus, um z.B. ein Rechteck 
 #### Reflection Questions
 
 1. **How does GTK’s signal-and-callback mechanism differ from X11’s event loop?**
-2. **Why use `pkg-config` when compiling GTK applications?**
+  GTK: Nutzt Signale und Callbacks (z.B. "clicked").
+GTK ruft deine Funktion automatisch auf, wenn ein Ereignis passiert.
+X11: Du musst selbst alle Events abfragen und behandeln.
+GTK ist einfacher und moderner.
 
+
+
+2. **Why use `pkg-config` when compiling GTK applications?**
+ pkg-config gibt automatisch die richtigen Compiler- und Linker-Flags für GTK zurück,
+damit dein Programm korrekt kompiliert und gelinkt wird, ohne dass du die Flags manuell suchen musst.
 ---
 
 **Remember:** Stop after **90 minutes** and record where you stopped.
